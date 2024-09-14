@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo-Liste</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <header class="title">
+        <h1>Taches-Listes</h1>
+    </header>
+    <div class="container">
+
+        {% if todos%}
+        {% for todo in todos %}
+        <div class="tache">
+            <ul>
+                <li>{{todo.name}}</li>
+            </ul>
+            {% if todo.completed %}
+                <h5 style="color:green">Terminer</h5>
+            {% else %}
+                <h5 style="color:blue">En cour</h5>
+            {% endif %}
+            <div class="link">
+                <a href="{% url 'create-todo' %}"><button type="button">+</button></a>
+                <a href="{% url 'update-todo' slug=todo.slug %}"><button type="button">Modifier</button></a>
+                <form method="POST" action="{% url 'delete-todo' slug=todo.slug %}">
+                    {% csrf_token %}
+                    <button type="submit">Supprimer</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+            <p>Aucune tache n'a été ajouter pour le moment !</p>
+        {% endif %}
+    </div>
+</body>
+</html>

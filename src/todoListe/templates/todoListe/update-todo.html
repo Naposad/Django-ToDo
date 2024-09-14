@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier-Tache</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+</head>
+<body>
+    <header class="title">
+        <h1>Taches-Listes</h1>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">Modifier</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

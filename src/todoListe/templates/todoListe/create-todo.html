@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Create-Todo</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+</head>
+<body>
+    <header class="title">
+        <h1>Ajouter - Tache</h1>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">Crée-tache</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
